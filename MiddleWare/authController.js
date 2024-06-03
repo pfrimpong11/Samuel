@@ -36,6 +36,8 @@ res.redirect('/');
 
 }
 
+
+
 module.exports = {
 
     requireAuth,

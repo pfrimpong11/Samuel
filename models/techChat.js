@@ -66,15 +66,6 @@ next() // move to the next middleware
 });
 
 
-// techChatSchema.statics.login = async function(email,password){
-// const user = await this.findOne({email}); // Finding a user. 
-
-// // if we do have a user, compare the hashed password.
-// if(user){
-
-// }
-// }
-
 
 //creating the model based on the schema so we could use methods and properties from that model.
 

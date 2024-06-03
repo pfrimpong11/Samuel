@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const nodemailer  = require('nodemailer');
+// const generateToken = require('../');
 
 const CreateCookiesFunc =  (req,res,lastName,firstName)=>{
 
@@ -150,15 +151,44 @@ const renderLoginPageWithError = (res)=>{
 
 
 
-// send message to user. 
-const sendEmail = (option)=>{
-// CREATE A TRANSPORTER - responsible for sending the message.
+const sendEmail = async (userEmail,id,token)=>{
 
 
+  // Create a transporter - responsible for sending the message
+  let transporter = nodemailer.createTransport({
+    host: 'smtp.office365.com',
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: 'tech.chat@outlook.com', // your Outlook email address
+      pass: 'Nana@techchat' // your Outlook email password
+    },
+    tls: {
+      ciphers: 'SSLv3'
+    }
+  });
+
+  let mailOptions = {
+    from: 'tech.chat@outlook.com',
+    to: userEmail,
+    subject: 'Password Reset from TechChat',
+    text : `http://localhost:3000/createPassword/${id}/${token}` 
+  };
+
+  try {
+    let info =  await transporter.sendMail(mailOptions);
+    console.log('Email sent: ' + info.response);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+
+const generateToken = ()=>{
+    return Math.random().toString(36).substr(2, 10);
 
 }
-
-
 
 
 module.exports = {
@@ -166,5 +196,7 @@ module.exports = {
     checkPasswordAndEmail,
     getValuesFromRequestBody,
     checkLoginDetails, createToken,
-    sendEmail
+    sendEmail,
+    generateToken,
+
 }

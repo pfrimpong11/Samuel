@@ -43,8 +43,8 @@ app.get('/resetPassword',techChatControllers.GetRequestsForgotPasswordController
 app.get('/',techChatControllers.GetRequestAlternativeHomeScreenController);  // redirect to the signup page.
 app.get('/allStudents',requireAuth, techChatControllers.GetRequestAllStudentsController);
 app.get('/feedback',techChatControllers.GetRequestFeedbackController);
-app.get('/emailSent',techChatControllers.GetRequestEmailSentController);
-app.get('/createPassword',techChatControllers.GetRequestCreatePasswordController);
+// app.get('/emailSent',techChatControllers.GetRequestEmailSentController);
+app.get('/createPassword/:id/:token',techChatControllers.GetRequestCreatePasswordController);
 app.get('/search', techChatControllers.SearchStudentsController);
 app.get('/logout',techChatControllers.GetRequestLogoutController);
 
@@ -52,8 +52,8 @@ app.get('/logout',techChatControllers.GetRequestLogoutController);
 // ********** POST REQUESTS AND ITS CONTROLLER****************
 
 app.post('/login',techChatControllers.PostLoginController); 
-
-
+app.post('/resetPassword',techChatControllers.PostRequestsForgotPasswordController);
+app.post('/createPassword',techChatControllers.PostRequestsCreatePasswordController);
 // LAST MIDDLEWARE.
 app.use((req,res)=>{
     res.status(404).render('404',{title:'404'});
