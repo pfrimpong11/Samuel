@@ -1,0 +1,4 @@
+console.log(__dirname); - Gives the whole path from C drive without the file
+console.log(__filename); - Gives the whole path from C drive with the file.
+
+

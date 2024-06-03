@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prospective Students</title>
+    <script src="https://kit.fontawesome.com/6c1f0d67e3.js" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f2f5;
+    }
+
+    #prospective-students {
+        /* width: 100%; */
+        max-width: 1400px;
+        margin: 0 auto;
+        /* padding: 20px; */
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #ffffff;
+        padding: 10px 20px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    header .logo {
+        display: flex;
+        align-items: center;
+    }
+
+    header .logo img {
+        height: 60px;
+        margin-right: 10px;
+    }
+
+    header .header-right {
+        display: flex;
+        align-items: center;
+    }
+
+    header .header-right span {
+        margin-right: 20px;
+        font-weight: bold;
+    }
+
+    header .header-right a {
+        margin-left: 10px;
+        text-decoration: none;
+        color: #007bff;
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        background-color: #282c34;
+        padding: 10px 0;
+    }
+
+    .nav-button, .nav-button a {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 16px;
+        padding: 10px 20px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .nav-button.active, .nav-button:hover {
+        background-color: #61dafb;
+        color: #282c34;
+        border-radius: 5px;
+    }
+
+    .search-bar {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+
+    .search-bar input {
+        width: 300px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .search-bar button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+
+    .search-bar button:hover {
+        background-color: #0056b3;
+    }
+
+    .students-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px;
+    }
+
+    .student {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #ffffff;
+        padding: 15px 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .student-info {
+        display: flex;
+        align-items: center;
+        align-items: center;
+        /* flex-direction: column; */
+    }
+
+    .student-name {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .student-info .fa-user {
+        /* height: 50px;
+        width: 50px; */
+        border-radius: 50%;
+        margin-right: 15px;
+        font-size: 30px;
+    }
+
+    .student-info .name {
+        font-weight: bold;
+        /* margin-right: 5px; */
+        white-space: nowrap; /* Prevent name from wrapping */
+        overflow: hidden; /* Hide overflow content */
+        text-overflow: ellipsis; /* Display ellipsis for overflow content */
+    }
+
+    .student-school {
+        margin-left: 20px;
+    }
+
+    .student-info .email {
+        color: #777;
+    }
+
+    .contact {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 5px;
+    }
+
+    .contact i {
+        padding-left: 10px;
+        font-size: 24px;
+        color: #007bff;
+    }
+    .contact .status {
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .contact .status .online {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .contact .status .offline {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+    .student-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #ffffff;
+        padding: 15px 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 10px;
+        overflow: hidden;
+    }
+
+    .student-card .student-info .name {
+        font-weight: bold;
+    }
+
+    .student-card .status .icon {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .student-card .status .icon img {
+        height: 24px;
+        width: 24px;
+    }
+
+        /* For small screens */
+    @media only screen and (max-width: 600px) {
+        /* Adjust header and navigation */
+        header {
+            /* flex-direction: column; */
+            text-align: center;
+        }
+
+        header .logo {
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        header .logo img {
+            margin-right: 0;
+            margin-left: 0;
+        }
+
+        header h3{
+            font-size: 12px;
+        }
+
+        .header-right {
+            margin-top: 10px;
+        }
+
+        .pros-students {
+            display: none;
+        }
+
+        nav {
+            /* flex-direction: column; */
+            align-items: center;
+        }
+
+        .search-bar {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .search-bar input {
+            width: 90%;
+            margin-bottom: 10px;
+        }
+
+        .student-name {
+            flex-direction: column;
+    }
+
+        .student-school {
+            margin-left: 0;
+            margin-top: 5px;
+    }
+    }
+
+    /* For medium screens */
+    @media only screen and (min-width: 601px) and (max-width: 1024px) {
+        /* Adjust header and navigation */
+        header {
+            padding: 15px;
+        }
+
+        header .logo img {
+            height: 40px;
+        }
+
+        .header-right {
+            font-size: 14px;
+        }
+    }
+
+    /* For large screens */
+    @media only screen and (min-width: 1025px) {
+        /* Adjust header and navigation */
+        header {
+            padding: 20px 40px;
+        }
+
+        header .logo img {
+            height: 60px;
+        }
+    }
+
+
+</style>
+<body>
+    <section id="prospective-students">
+        <header>
+            <div class="logo">
+                <a target="_blank" href="https://www.knust.edu.gh/"><img src="/knust_logo.png" alt="KNUST Logo"></a>
+                <div class="pros-students">
+                    <h3>Prospective Students</h3>
+                </div>
+            </div>
+            <div><h3>Welcome, <%=username %></h3></div>
+            <div class="header-right">
+                <button style="background-color: white; border:none;" id="logoutButton"><a href="./logout"><i class="fa-solid fa-right-from-bracket"></i>  Logout</a></button>
+            </div>
+        </header>
+        <nav>
+            <button class="nav-button" id="homeButton"><a href="http://localhost:5000/">Home</a></button>
+            <button class="nav-button active" id="studentsButton">Students</button>
+        </nav>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search students">
+            <button id="searchButton">Search</button>
+        </div>
+        <div class="students-list">
+            <% if(results.length > 0) { %>
+                <% results.forEach(result => { %>
+                    <div class="student-card">
+                        <div class="student-info">
+                            <i class="fa-solid fa-user"></i>
+                            <div class="student-name">
+                                <div>
+                                    <span class="name"><%= result.firstName %></span>
+                                    <span class="name"><%= result.lastName %></span>
+                                </div>
+                                <div class="student-school">A student from <%= result.highSchool %> </div> 
+                            </div>
+                        </div>
+                        <div class="contact">
+                            <span><a target="_blank" href="mailto:<%= result.email %>"> <i class="fa-solid fa-envelope"></i></a></span>
+                            <span><a target="_blank" href="https://wa.me/233<%= result.phone %>"><i class="fa-brands fa-whatsapp"></i></a></span>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>No students have been registered yet</p>
+            <% } %>
+        </div>
+    </section>
+
+    <script>
+        // Get references to the navigation buttons
+        const homeButton = document.getElementById("homeButton");
+        const studentsButton = document.getElementById("studentsButton");
+        // Add event listeners to the navigation buttons
+        homeButton.addEventListener("click", function() {
+            // Remove "active" class from all buttons
+            homeButton.classList.add("active");
+            studentsButton.classList.remove("active");
+        });
+
+        studentsButton.addEventListener("click", function() {
+            // Remove "active" class from all buttons
+            studentsButton.classList.add("active");
+            homeButton.classList.remove("active");
+        });
+
+
+
+
+
+        document.getElementById('searchButton').addEventListener('click', function() {
+            const query = document.getElementById('searchInput').value;
+            searchStudents(query);
+        });
+
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const query = document.getElementById('searchInput').value;
+                searchStudents(query);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById('searchInput');
+            
+            // Add event listener to the search input field
+            searchInput.addEventListener('input', function () {
+                const query = searchInput.value.trim(); // Trim whitespace
+                
+                if (query === '') {
+                    // If the input value is empty, fetch and display all students again
+                    fetchAllStudents();
+                } else {
+                    // If the input value is not empty, perform the search
+                    searchStudents(query);
+                }
+            });
+        });
+
+        function fetchAllStudents() {
+            fetch('/allStudents')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('All students:', data); // Debugging
+                    displayResults(data);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+
+        function searchStudents(query) {
+            fetch(`/search?query=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Search results:', data); // Debugging
+                    displayResults(data);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function displayResults(results) {
+            const studentsList = document.querySelector('.students-list');
+            studentsList.innerHTML = '';
+
+            if (results.length > 0) {
+                results.forEach(result => {
+                    const studentCard = document.createElement('div');
+                    studentCard.classList.add('student-card');
+                    studentCard.innerHTML = `
+                        <div class="student-info">
+                            <i class="fa-solid fa-user"></i>
+                            <div class="student-name">
+                                <div>
+                                    <span class="name">${result.firstName}</span>
+                                    <span class="name">${result.lastName}</span>
+                                </div>
+                                <div class="student-school">A student from ${result.highSchool}</div> 
+                            </div>
+                        </div>
+                        <div class="contact">
+                            <span><a target="_blank" href="mailto:${result.email}"><i class="fa-solid fa-envelope"></i></a></span>
+                            <span><a target="_blank" href="https://wa.me/233${result.phone}"><i class="fa-brands fa-whatsapp"></i></a></span>
+                        </div>
+                    `;
+                    studentsList.appendChild(studentCard);
+                });
+            } else {
+                studentsList.innerHTML = '<p>No students found</p>';
+            }
+        }
+
+    </script>
+</body>
+</html>
